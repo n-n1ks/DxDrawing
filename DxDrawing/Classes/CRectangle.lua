@@ -1,3 +1,10 @@
+--[[
+|	** File:		CRectangle.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxRectangle content
+]]
+
 CRectangle = inherit( CDxObject );
 
 function CRectangle:constructor( X, Y, Width, Height, Color, Alpha, Parent )

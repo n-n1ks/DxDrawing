@@ -1,3 +1,10 @@
+--[[
+|	** File:		CLine.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxLine content
+]]
+
 CLine = inherit( CDxObject );
 
 function CLine:constructor( X, Y, XTo, YTo, Color, Alpha, Width, Parent )

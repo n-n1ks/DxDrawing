@@ -1,3 +1,10 @@
+--[[
+|	** File:		CDxManager.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxManager content
+]]
+
 CDxManager = {};
 
 addEventHandler( "onClientResourceStart", resourceRoot,

@@ -1,3 +1,10 @@
+--[[
+|	** File:		CText.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxText content
+]]
+
 CText = inherit( CDxObject );
 
 function CText:constructor( Text, X, Y, Width, Height, Color, Alpha, Scale, Font, AlignX, AlignY, Clip, WordBreak, ColorCoded, Parent )

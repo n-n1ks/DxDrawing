@@ -1,3 +1,10 @@
+--[[
+|	** File:		CImage.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxImage content
+]]
+
 CImage = inherit( CDxObject );
 
 function CImage:constructor( X, Y, Width, Height, Image, Rotation, RotationOffsetX, RotationOffsetY, Color, Alpha, Parent )

@@ -1,9 +1,9 @@
---[[================================= State66 RP ===================================
-|	Файл:		Class.lua
-|	Тип:		Сервер
-|	Автор(ы): 	sbx320
-|	Описание:	Библиотека классов. Репозиторий: https://github.com/sbx320/lua_utils
-====================================================================================]]
+--[[
+|	** File:		Class.lua
+|	** Type:		Client
+|	** Author: 		sbx320
+|	** Discription:	Class library. Repository: https://github.com/sbx320/lua_utils
+]]
 
 --// classlib
 --||	@type:	Shared

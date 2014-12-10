@@ -1,3 +1,10 @@
+--[[
+|	** File:		CDxObject.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxObject content
+]]
+
 CDxObject = {};
 
 function CDxObject:init()

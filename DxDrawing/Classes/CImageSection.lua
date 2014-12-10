@@ -1,3 +1,10 @@
+--[[
+|	** File:		CImageSection.lua
+|	** Type:		Client
+|	** Author: 		N1kS
+|	** Discription:	DxImageSection content
+]]
+
 CImageSection = inherit( CDxObject );
 
 function CImageSection:constructor( X, Y, Width, Height, U, V, USize, VSize, Image, Rotation, RotationOffsetX, RotationOffsetY, Color, Alpha, Parent )
