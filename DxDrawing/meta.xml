@@ -1,0 +1,18 @@
+<meta>
+	<info Author="N1kS; sbx320" version="0.1" name="DxDrawing" description="Library for dx drawing" />
+	<!-- Disable MTA OOP -->
+	<oop>false</oop>
+	
+	<!-- Some stuff -->
+	<script src="Libs/Class.lua" type="client" />
+	<script src="Defines.lua" type="client" />
+
+	<!-- Classes -->
+	<script src="Classes/CDxObject.lua" type="client" />
+	<script src="Classes/CDxManager.lua" type="client" />
+	<script src="Classes/CRectangle.lua" type="client" />
+	<script src="Classes/CImage.lua" type="client" />
+	<script src="Classes/CImageSection.lua" type="client" />
+	<script src="Classes/CLine.lua" type="client" />
+	<script src="Classes/CText.lua" type="client" />
+</meta>
