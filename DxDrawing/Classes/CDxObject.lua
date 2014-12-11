@@ -12,23 +12,25 @@ function CDxObject:init()
 	if self.m_Parent then
 		self.m_Parent:addChild( self )
 	end
-	-- Default GUI events for our object
+	-- Default events for our object
 	if self.m_X and self.m_Y and self.m_Width and self.m_Height then
-		self.m_Button = guiCreateButton( self.m_X, self.m_Y, self.m_Width, self.m_Height, "", false );
-		guiSetAlpha( self.m_Button, 0 );
-	
 		self.m_FunctionOnClick = bind( CDxObject.onClick, self );
 		addEventHandler( "onClientClick", root, self.m_FunctionOnClick );
-	
-		self.m_FunctionOnMouseEnter = bind( CDxObject.onMouseEnter, self );
-		addEventHandler( "onClientMouseEnter", self.m_Button, self.m_FunctionOnMouseEnter );
-
-		self.m_FunctionOnMouseLeave = bind( CDxObject.onMouseLeave, self );
-		addEventHandler( "onClientMouseLeave", self.m_Button, self.m_FunctionOnMouseLeave );
+		
+		self.m_MouseEntered = false;
+		
+		self.m_FunctionMouseMove = bind( CDxObject.onMouseMove, self );
+		addEventHandler( "onClientCursorMove", root, self.m_FunctionMouseMove );
 	end
 end
 
 function CDxObject:destroy()
+	if self.m_FunctionOnClick then
+		removeEventHandler( "onClientClick", root, self.m_FunctionOnClick );
+	end
+	if self.m_FunctionMouseMove then
+		removeEventHandler( "onClientCursorMove", root, self.m_FunctionMouseMove );
+	end
 	Dx:deleteElement( self.m_Type, self.m_ID );
 	for _, Child in ipairs( self.m_Childs ) do
 		Child:destroy();
@@ -47,9 +49,6 @@ end
 function CDxObject:setX( X )
 	if tonumber( X ) and self.m_X then
 		self.m_X = X;
-		if self.m_Button then
-			guiSetPosition( self.m_Button, self.m_X, self.m_Y, false );
-		end
 	else
 		outputDebugString( "Incorrect value!", 1 );
 	end
@@ -74,9 +73,6 @@ end
 function CDxObject:setY( Y )
 	if tonumber( Y ) and self.m_Y then
 		self.m_Y = Y;
-		if self.m_Button then
-			guiSetPosition( self.m_Button, self.m_X, self.m_Y, false );
-		end
 	else
 		outputDebugString( "Incorrect value!", 1 );
 	end
@@ -211,7 +207,6 @@ function CDxObject:setPosition( Horizontal, Vertical )
 		elseif Horizontal == "right" then
 			self.m_X = X - self.m_Width;
 		end
-		guiSetPosition( self.m_Button, self.m_X, self.m_Y, false );
 	end
 	if Vertical then
 		if Vertical == "top" then
@@ -221,8 +216,17 @@ function CDxObject:setPosition( Horizontal, Vertical )
 		elseif Vertical == "bottom" then
 			self.m_Y = Y - self.m_Height;
 		end
-		guiSetPosition( self.m_Button, self.m_X, self.m_Y, false );
 	end
+end
+
+function CDxObject:setImage( Image )
+	if self.m_Image then
+		self.m_Image = Image;
+	end
+end
+
+function CDxObject:getImage()
+	return self.m_Image or false;
 end
 
 function CDxObject:setU( U )
@@ -340,14 +344,16 @@ function CDxObject:onClick( Button, State, X, Y )
 	end
 end
 
-function CDxObject:onMouseEnter( X, Y, GUI )
-	if self.OnMouseEnter then
-		self.OnMouseEnter( true );
-	end
-end
-
-function CDxObject:onMouseLeave( X, Y, GUI )
-	if self.OnMouseLeave then
-		self.OnMouseLeave( true );
+function CDxObject:onMouseMove( _, _, X, Y )
+	if X >= self.m_X and X <= self.m_X + self.m_Width and Y >= self.m_Y and Y <= self.m_Y + self.m_Height then
+		if self.OnMouseEnter and not self.m_MouseEntered then
+			self.OnMouseEnter( true );
+			self.m_MouseEntered = true;
+		end
+	else
+		if self.OnMouseLeave and self.m_MouseEntered then
+			self.OnMouseLeave( true );
+			self.m_MouseEntered = false;
+		end
 	end
 end

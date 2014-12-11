@@ -10,8 +10,7 @@ CDxManager = {};
 addEventHandler( "onClientResourceStart", resourceRoot,
 	function()
 		Dx = new( CDxManager );
-	end
-)
+	end, true, "high+10" )
 
 function CDxManager:constructor()
 	self.m_Images = {};
@@ -65,7 +64,7 @@ function CDxManager:getElementsByType( ElementType )
 end
 
 function CDxManager:createRectangle( X, Y, Width, Height, Color, Alpha, Parent )
-	local Rectangle = new( CRectangle, X, Y, Width, Height, Color, Alpha, Paren );
+	local Rectangle = new( CRectangle, X, Y, Width, Height, Color, Alpha, Parent );
 	if Rectangle then
 		self:addElement( "Rectangle", Rectangle );
 		local ID = #self.m_Rectangles;
